@@ -176,6 +176,20 @@ pub fn generate_request(mut request: Request) -> Result<(Vec<u8>, String)> {
             name = "Origin";
         }
 
+        // Custom case-sensitive headers
+        if name == "x-pck" {
+            name = "X-PCK";
+        }
+        if name == "x-nonce" {
+            name = "X-Nonce";
+        }
+        if name == "x-stamp" {
+            name = "X-Stamp";
+        }
+        if name == "x-signature" {
+            name = "X-Signature";
+        }
+
         writeln!(req, "{}: {}\r", name, v.to_str()?).unwrap();
     }
 
